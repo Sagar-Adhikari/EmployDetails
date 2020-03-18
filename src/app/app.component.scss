@@ -1,0 +1,87 @@
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+  font: 300 15px/20px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.logo {
+  height: 50px;
+  cursor: pointer;
+}
+
+.toolbar-row {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100px;
+  max-height: 100%;
+  margin: auto;
+  padding-left: 10px;
+}
+
+.toolbar-login {
+  flex: 0 0 200px;
+  padding-right: 10px;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  height: calc(100% - 63px);
+  top: 63px;
+  width: 250px;
+}
+
+.sidenav-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: calc(100% - 63px);
+  //  width: 100%;
+  //   overflow-x: hidden;
+  top: 63px;
+}
+
+.app-footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #403c3c;
+  color: white;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+
+  flex: 1 0 auto;
+}
