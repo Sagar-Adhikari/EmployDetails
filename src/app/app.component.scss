@@ -1,8 +1,8 @@
 .app-toolbar {
   position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  z-index: 1000;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that y */
   font: 300 15px/20px Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -20,7 +20,7 @@
   padding-left: 10px;
 }
 
-.toolbar-login {
+.toolbar-user {
   flex: 0 0 200px;
   padding-right: 10px;
 }
@@ -40,21 +40,17 @@
   z-index: 1;
   display: block;
   height: calc(100% - 63px);
-  //  width: 100%;
-  //   overflow-x: hidden;
   top: 63px;
+  overflow: hidden;
 }
 
-.app-footer {
-  display: flex;
-  flex-direction: column;
-  background-color: #403c3c;
-  color: white;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
+// .app-footer {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #403c3c;
+//   color: white;
+//   align-items: center;
+// }
 
 .example-container {
   display: flex;
@@ -68,7 +64,7 @@
 
 .example-is-mobile .example-toolbar {
   position: fixed;
-
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
 
@@ -77,11 +73,25 @@ h1.example-app-name {
 }
 
 .example-sidenav-container {
-
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
 }
 
 .example-is-mobile .example-sidenav-container {
-
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
+}
+
+@media (max-width: 600px) {
+  .sidenav {
+    height: calc(100% - 55px);
+    top: 55px;
+  }
+
+  .sidenav-content {
+    height: calc(100% - 55px);
+    top: 55px;
+  }
 }

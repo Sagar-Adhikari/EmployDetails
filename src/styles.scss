@@ -1,28 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
-
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-// html,
-// body {
-//   height: 100%;
-//   overflow: hidden;
-// }
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 router-outlet ~ * {
-//   background-color: white;
-//   border: 1px dashed rgba(114, 186, 94, 0.35);
-//  // position: absolute;
-//   height: 100%;
-//   width: 100%;
-//   display: -webkit-box;
-//   display: flex;
-//   overflow: hidden;
-//   overflow: auto;
-//   flex-direction: column;
+  background-color: white;
+  border: 1px dashed rgba(114, 186, 94, 0.35);
+//  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  overflow: hidden;
+  overflow: auto;
+  flex-direction: column;
 }
 
 .flex-row {

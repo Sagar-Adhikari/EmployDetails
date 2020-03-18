@@ -1,1 +1,30 @@
-<p>add-employee works!</p>
+
+<form class="employee-form" novalidate [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)">
+  <div class="flex-row">
+    <mat-form-field class="mat-form-field">
+      <input #employeeName matInput placeholder="Name" autocomplete="off" formControlName="name"   />
+      <mat-error>Name is not in correct format.</mat-error>
+      <mat-hint>Enter the Employee Name </mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="flex-row">
+      <mat-form-field class="mat-form-field">
+        <input #categoryName matInput placeholder="Salary" autocomplete="off" formControlName="salary"   />
+        <mat-error>salary is not in correct format.</mat-error>
+        <mat-hint>Enter the Employee salary </mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex-row">
+      <mat-form-field class="mat-form-field">
+        <input #categoryName matInput placeholder="age" autocomplete="off" formControlName="age"   />
+        <mat-error>Age is not in correct format.</mat-error>
+        <mat-hint>Enter the Employee Age </mat-hint>
+      </mat-form-field>
+    </div>
+
+  <div class="flex-row">
+    <div class="item" style="text-align: right;">
+      <button mat-raised-button color="primary" style="width: 100px; ">Save</button>
+    </div>
+  </div>
+</form>
