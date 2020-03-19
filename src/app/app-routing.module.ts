@@ -5,6 +5,8 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
+  { path:'', component: EmployeeListComponent },
+
   { path: "create", component: AddEmployeeComponent },
   { path: "employee-list", component: EmployeeListComponent },
   { path: "get-employee/:id", component: AddEmployeeComponent },

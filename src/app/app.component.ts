@@ -32,15 +32,10 @@ export class AppComponent {
       this.allowFooter = x.allowFooter;
     });
 
-    // this.breakpointObserver.observe([
-    //   '(max-width: 768px)'
-    // ]).subscribe(result => {
-    //   if (result.matches) {
-    //     this.smallScreen = true;
-    //   } else {
-    //     this.smallScreen = false;
-    //   }
-    // });
+    this.globalService.loading$.subscribe(x => {
+      this.loading = x;
+    })
 
+  
   }
 }

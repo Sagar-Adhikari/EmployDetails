@@ -15,7 +15,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
-
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,18 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     MatTableModule,
     MatSortModule,
      MatPaginatorModule,
-     MatSelectModule
+     MatSelectModule,
+
+     NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.threeBounce,
+      // backdropBackgroundColour: 'rgba(255, 255, 255, 0.81)',
+      backdropBackgroundColour: 'transparent',
+      backdropBorderRadius: '0px',
+      primaryColour: 'Navy',
+      secondaryColour: 'Navy',
+      tertiaryColour: 'Navy',
+      fullScreenBackdrop: false
+    })
 
   ],
   providers: [],
