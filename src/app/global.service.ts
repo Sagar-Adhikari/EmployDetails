@@ -25,18 +25,11 @@ export class GlobalService {
     return `${d} ${t}`;
   }
 
-  getShortDateWithoutTime(x: Date) {
-    const d = new Date(x).toLocaleDateString();
-    return `${d}`;
-  }
-
   setLayout(layout: ILayout) {
     setTimeout(() => {
       this.pageTitleSource.next(layout);
     });
   }
-
-
 
   setLoading(loading: boolean) {
     if (this._loading === loading) { return; }
