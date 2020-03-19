@@ -39,7 +39,6 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   deleteEmployee() {
-    debugger;
     this.employeeService.deleteEmployee(this.employeeId).subscribe((x: any) => {
       console.log("delete", x);
       this.employData = x.data;
