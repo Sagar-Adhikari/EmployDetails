@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class EmployeeDetailsComponent implements OnInit {
   private employeeId: number;
+  employData: any;
+  image=[`../assets/employeeDetails.png`];
 
   constructor(
     private globalService: GlobalService,
@@ -26,9 +28,10 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit() {
     this.employeeId = +this.activatedRoute.snapshot.paramMap.get('id');
     if (this.employeeId != 0 && this.employeeId != undefined) {
-      this.globalService.setLayout({pageTitle:'Employee Details',allowFooter:true})
+      this.globalService.setLayout({ pageTitle: 'Employee Details', allowFooter: true })
       this.employeeService.getEmployee(this.employeeId).subscribe(x => {
         console.log("details", x);
+
       });
     }
 
@@ -36,8 +39,10 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   deleteEmployee() {
+    debugger;
     this.employeeService.deleteEmployee(this.employeeId).subscribe((x: any) => {
       console.log("delete", x);
+      this.employData = x.data;
     });
   }
 }

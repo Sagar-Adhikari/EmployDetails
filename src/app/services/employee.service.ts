@@ -33,13 +33,13 @@ export class EmployeeService {
 
 
 
-  public getEmployee(id?: number): Observable<any> {
-    debugger;
+  public getEmployee(id: number): Observable<any> {
+    // debugger;
     const header = new HttpHeaders({ 'ContentType': 'application/json' });
-    const url = environment.api + `employee`+`/${id}`;
+    const url = environment.api + `employee/${id}`;
     // const params = new HttpParams()
     // .set('id', id.toString());
-    return this.http.get(url, { headers: header })
+    return this.http.get(url )
       .pipe(catchError(this.handleError));
   }
 
