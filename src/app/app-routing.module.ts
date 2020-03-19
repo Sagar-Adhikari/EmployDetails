@@ -12,13 +12,6 @@ const routes: Routes = [
   { path: "get-employee/:id", component: AddEmployeeComponent },
   { path: "get-employee-details/:id", component: EmployeeDetailsComponent }
 
-
-
-
-
-
-
-
 ];
 
 @NgModule({

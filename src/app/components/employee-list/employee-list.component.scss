@@ -8,17 +8,6 @@
   flex-direction: column;
 }
 
-.mat-column-category {
-  min-width: 200px;
-}
-
-.mat-column-serviceType {
-  min-width: 100px;
-}
-
-.mat-column-createdOn {
-  min-width: 100px;
-}
 .mat-column-action {
   border-bottom-style: none;
 }
@@ -50,28 +39,13 @@
     display: none;
   }
 
-  // .mobile-label {
-  //   width: 100px;
-  //   min-width: 100px;
-  //   display: inline-block;
-  //   font-size: 12px;
-  //   font-weight: bold;
-  // }
 
-  .mat-column-category {
-    min-width: inherit;
-    max-width: inherit;
-  }
 
-  .mat-column-status {
-    min-width: inherit;
-    max-width: inherit;
-  }
+  
 
-  .mat-column-serviceType {
-    min-width: inherit;
-    max-width: inherit;
-  }
+   
+
+  
 }
 .mat-column-action {
   border-bottom-style: none;

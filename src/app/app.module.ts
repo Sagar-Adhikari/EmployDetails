@@ -47,7 +47,6 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
      NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.threeBounce,
-      // backdropBackgroundColour: 'rgba(255, 255, 255, 0.81)',
       backdropBackgroundColour: 'transparent',
       backdropBorderRadius: '0px',
       primaryColour: 'Navy',
