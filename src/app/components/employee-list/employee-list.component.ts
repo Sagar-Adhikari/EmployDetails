@@ -9,6 +9,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./employee-list.component.scss"]
 })
 export class EmployeeListComponent implements OnInit {
+  loading=false;
+
   data: any[] = [];
   displayedColumns: string[] = [
     "id",

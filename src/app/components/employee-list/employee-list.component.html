@@ -5,6 +5,8 @@
 </div>
 
 </div>
+<ngx-loading [show]='loading'></ngx-loading>
+
 
 <div class="mat-table-container mat-elevation-z8">
   <mat-table [dataSource]="data" class="mat-table" [class.isMobile]="isMobile" matSort matSortActive="employee_name"
@@ -28,6 +30,7 @@
       <mat-cell *matCellDef="let row">
         <span class="mobile-label">Employee Name:</span>
         <a routerLink="/get-employee-details/{{ row.id }}">  {{ row.employee_name }}</a>
+
       </mat-cell>
     </ng-container>
 

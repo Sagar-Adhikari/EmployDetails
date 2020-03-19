@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
-
 interface ILayout {
   pageTitle: string,
   allowFooter: boolean
@@ -19,19 +18,6 @@ export class GlobalService {
   loading$ = this.loadingSource.asObservable();
 
   constructor(private snackbar: MatSnackBar) { }
-
-
-  YYYYMMDD = (date: Date) => {
-    var x = new Date(date);
-    var y = x.getFullYear().toString();
-    var m = (x.getMonth() + 1).toString();
-    var d = x.getDate().toString();
-    (d.length == 1) && (d = '0' + d);
-    (m.length == 1) && (m = '0' + m);
-    var yyyymmdd = y + '-' + m + '-' + d;
-    return yyyymmdd;
-
-  }
 
   getShortDateWithTime(x: Date) {
     const d = new Date(x).toLocaleDateString();

@@ -19,9 +19,7 @@ export class EmployeeDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.globalService.setLayout({
-      pageTitle: "employees Details",
-      allowFooter: false
+    this.globalService.setLayout({ pageTitle: "employees Details", allowFooter: false
     });
   }
 
