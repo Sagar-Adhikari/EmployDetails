@@ -71,29 +71,6 @@ export class EmployeeService {
       );
   }
 
-  // public getList(
-  //   pageNo: number,
-  //   pageSize: number,
-  //   orderBy: string,
-  //   orderDirection: string,
-  //   filter: any[]
-  // ): Observable<any> {
-  //   const headers = new HttpHeaders({ 'ContentType': 'application/json' });
-  //   const url = environment.api + 'category/list-details';
-  //   let params = new HttpParams()
-  //     .set('pageNo', pageNo.toString())
-  //     .set('pageSize', pageSize.toString())
-  //     .set('orderBy', orderBy)
-  //     .set('orderDirection', orderDirection);
-  //   filter.forEach(el => {
-  //     params = params.append(el.field, el.value);
-  //   });
-  //   return this.http.get(url, { headers, params })
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
-
   private handleError(error: HttpErrorResponse) {
     if (error.error) {
       return throwError({ status: error.status, message: error.error.message });
