@@ -50,7 +50,7 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeId = params.id;
       if (this.employeeId != 0 && this.employeeId != undefined) {
         this.globalService.setLayout({ allowFooter: true, pageTitle: 'Edit Employee' });
-        this.employService.getEmployee(+this.employeeId).subscribe((x: any) => {
+        this.employService.getEmployee(this.employeeId.toString()).subscribe((x: any) => {
 
           console.log('edit emp:', x);
           this.employeeForm.controls['name'].setValue(x.data.employee_name);

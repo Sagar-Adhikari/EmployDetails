@@ -33,13 +33,13 @@ export class EmployeeService {
 
 
 
-  public getEmployee(id: number): Observable<any> {
+  public getEmployee(id: string): Observable<any> {
     // debugger;
     const header = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `employee/${id}`;
     // const params = new HttpParams()
     // .set('id', id.toString());
-    return this.http.get(url )
+    return this.http.get(url ,{headers:header})
       .pipe(catchError(this.handleError));
   }
 
@@ -61,12 +61,12 @@ export class EmployeeService {
       );
   }
 
-  public deleteEmployee(id: number): Observable<any> {
+  public deleteEmployee(id: string): Observable<any> {
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
-    const url = environment.api + `delete`;
-    const params = new HttpParams()
-    .set('id', id.toString());
-    return this.http.delete(url,{ headers, params })
+    const url = environment.api + `delete/${id}`;
+    // const params = new HttpParams()
+    // .set('id', id.toString());
+    return this.http.delete(url,{ headers  })
       .pipe(
         catchError(this.handleError)
       );

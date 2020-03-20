@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./employee-details.component.scss"]
 })
 export class EmployeeDetailsComponent implements OnInit {
-  private employeeId: number;
+  private employeeId: string;
   employData: any;
   image = [`../assets/employeeDetails.png`];
 
@@ -22,26 +22,26 @@ export class EmployeeDetailsComponent implements OnInit {
     private router: Router
   ) {
     this.globalService.setLayout({ pageTitle:'Employee Details', allowFooter: false
+    
     });
+    this.globalService.setLoading(false);
   }
 
   ngOnInit() {
-    this.employeeId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.employeeId = this.activatedRoute.snapshot.paramMap.get('id');
     this.loading = true;
-    if (this.employeeId != 0 && this.employeeId != undefined) {
-      this.globalService.setLayout({ pageTitle: 'Employee Personal  Details', allowFooter: true })
-      this.employeeService.getEmployee(this.employeeId).subscribe(x => {
+    if (this.employeeId != null && this.employeeId != undefined) {
+      this.employeeService.getEmployee(this.employeeId.toString()).subscribe(x => {
         console.log("details", x);
-        this.loading = false;
 
       });
     }
 
-    this.deleteEmployee();
   }
 
   deleteEmployee() {
-    this.employeeService.deleteEmployee(this.employeeId).subscribe((x: any) => {
+    this.loading=true;
+    this.employeeService.deleteEmployee(this.employeeId.toString()).subscribe((x: any) => {
       console.log("delete", x);
       this.employData = x.data;
     });
