@@ -21,6 +21,20 @@
         <mat-hint>Enter the Employee Age </mat-hint>
       </mat-form-field>
     </div>
+    <div class="flex-row item">
+        
+      <input #fileInput type="file" name="file" 
+      formControlName="file" accept="image/*"
+          (change)="onFileSelected($event)">
+         
+  </div>
+  <div *ngIf="selectedFile" class="img-container">
+      <div
+        mat-card-avatar
+        class="menu-image"
+        [ngStyle]="{ 'background-image': 'url(' + imgUrl + ')' }"
+      ></div>
+    </div>
 
   <div class="flex-row">
     <div class="item" style="text-align: right;">

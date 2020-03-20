@@ -48,8 +48,7 @@ export class GlobalService {
   }
 
   showMessageError(message: string, duration?: number) {
-    this.snackbar.open(message, 'Error:',
-      { duration: duration ? duration : 3000, panelClass: ['error-snackbar'] });
+    this.snackbar.open(message, 'Error:', { duration: duration ? duration : 3000, panelClass: ['error-snackbar'] });
     this._loading = false;
     this.loadingSource.next(this._loading);
   }

@@ -3,6 +3,7 @@ import { GlobalService } from "./../../global.service";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: "app-add-employee",
@@ -11,8 +12,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class AddEmployeeComponent implements OnInit {
   @ViewChild("employeeName", { static: true }) employeeName: ElementRef;
+  private iconPath = environment.icon_image_path + 'photo/p/';
+
   employeeForm: FormGroup;
   private employeeId: number;
+  selectedFile = null;
+
+  imgUrl: any = this.iconPath + 'default.jpg';
 
   constructor(
     private globalService: GlobalService,
@@ -33,7 +39,9 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm = new FormBuilder().group({
       name: ['', Validators.compose([Validators.required])],
       salary: [0, Validators.compose([Validators.required])],
-      age: [0, Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])]
+      age: [0, Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])],
+      file:[]
+
     });
     this.activatedRoute.params.subscribe(params => {
       // debugger;
@@ -51,6 +59,24 @@ export class AddEmployeeComponent implements OnInit {
     });
     this.employeeName.nativeElement.focus();
   }
+
+  onFileSelected(event: any) {
+    this.globalService.setLoading(false);
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event: any) => {
+        this.imgUrl = event.target.result;
+        this.globalService.setLoading(false);
+      };
+      this.selectedFile = event.target.files[0];
+      reader.readAsDataURL(event.target.files[0]);
+    } else {
+      this.selectedFile = null;
+      this.imgUrl = null;
+    }
+  }
+
 
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
     console.log("empValue", value);

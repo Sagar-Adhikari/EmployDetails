@@ -19,7 +19,7 @@
       </span>
     </div>
     <div class="toolbar-row toolbar-login" >
-      <button mat-button    >Login</button>
+      <button mat-button>Login</button>
 
 
     </div>
@@ -42,7 +42,7 @@
   </mat-sidenav>
   <mat-sidenav-content class="sidenav-content" >
     <router-outlet></router-outlet>
-    <div  class="app-footer">
+    <div *ngIf=allowFooter class="app-footer">
       <span>Developed By</span>
       <span>Sagar Adhikari</span>
       <span style="font-size: 10px;">ph. No: 9843650962</span>
