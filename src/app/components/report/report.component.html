@@ -1,0 +1,24 @@
+<div style="overflow: auto;">
+    <div class="flex-row" style="max-width: 800px; margin: auto;">
+      <mat-form-field>
+          <mat-label>chart type</mat-label>
+          <mat-select [(ngModel)]="chartId" name="chartId" (selectionChange)="chartTypeChanged($event.value)">
+              <mat-option *ngFor="let item of chartList" [value]="item.id">
+                  {{item.name}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div *ngIf="loading" class="flex-row">
+        <mat-progress-bar class="example-margin" color="primary" mode="query">
+        </mat-progress-bar>
+    </div>
+  
+    <div class="graph-container">
+        <canvas class="canvas-graph" baseChart [datasets]="barChartData" [labels]="barChartLabels"
+            [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+    </div>
+  
+  </div>

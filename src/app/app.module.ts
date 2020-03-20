@@ -16,12 +16,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ReportComponent } from './components/report/report.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,9 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
     MatSortModule,
      MatPaginatorModule,
      MatSelectModule,
-
+     ChartsModule,
+    //  ChartsModule,
+     MatProgressBarModule,
      NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.threeBounce,
       backdropBackgroundColour: 'transparent',

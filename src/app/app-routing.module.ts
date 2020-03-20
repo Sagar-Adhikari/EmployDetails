@@ -3,14 +3,17 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { AddEmployeeComponent } from "./components/add-employee/add-employee.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { ReportComponent } from './components/report/report.component';
 
 const routes: Routes = [
-  { path:'', component: EmployeeListComponent },
+  { path: '', component: EmployeeListComponent },
 
   { path: "add-user", component: AddEmployeeComponent },
   { path: "employee-list", component: EmployeeListComponent },
   { path: "get-employee/:id", component: AddEmployeeComponent },
-  { path: "get-employee-details/:id", component: EmployeeDetailsComponent }
+  { path: "get-employee-details/:id", component: EmployeeDetailsComponent },
+  { path: 'chart-report', component: ReportComponent }
+
 
 ];
 
@@ -18,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
