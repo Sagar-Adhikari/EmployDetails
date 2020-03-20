@@ -18,6 +18,8 @@ export class AddEmployeeComponent implements OnInit {
   private employeeId: number;
   selectedFile = null;
 
+  loading=false;
+
   imgUrl: any = this.iconPath + 'default.jpg';
 
   constructor(

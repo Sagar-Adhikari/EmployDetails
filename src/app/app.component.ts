@@ -28,6 +28,7 @@ export class AppComponent {
   ){
 
     this.globalService.pageTitle$.subscribe(x => {
+      console.log('layout',x);
       this.pageTitle = x.pageTitle;
       this.allowFooter = x.allowFooter;
     });

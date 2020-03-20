@@ -11,7 +11,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class EmployeeDetailsComponent implements OnInit {
   private employeeId: number;
   employData: any;
-  image=[`../assets/employeeDetails.png`];
+  image = [`../assets/employeeDetails.png`];
+
+  loading = false;
 
   constructor(
     private globalService: GlobalService,
@@ -19,16 +21,18 @@ export class EmployeeDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.globalService.setLayout({ pageTitle: "employees Details", allowFooter: false
+    this.globalService.setLayout({ pageTitle:'Employee Details', allowFooter: false
     });
   }
 
   ngOnInit() {
     this.employeeId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.loading = true;
     if (this.employeeId != 0 && this.employeeId != undefined) {
-      this.globalService.setLayout({ pageTitle: 'Employee Details', allowFooter: true })
+      this.globalService.setLayout({ pageTitle: 'Employee Personal  Details', allowFooter: true })
       this.employeeService.getEmployee(this.employeeId).subscribe(x => {
         console.log("details", x);
+        this.loading = false;
 
       });
     }
