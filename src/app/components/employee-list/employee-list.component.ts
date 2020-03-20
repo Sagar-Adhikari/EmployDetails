@@ -61,7 +61,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/add-user"]);
+    this.router.navigate(["/add-employ"]);
   }
   ngAfterViewInit() {
     this.sort.sortChange.subscribe((x: { active: any; direction: string; }) => {

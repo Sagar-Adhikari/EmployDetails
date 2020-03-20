@@ -8,7 +8,7 @@ import { ReportComponent } from './components/report/report.component';
 const routes: Routes = [
   { path: '', component: EmployeeListComponent },
 
-  { path: "add-user", component: AddEmployeeComponent },
+  { path: "add-employ", component: AddEmployeeComponent },
   { path: "employee-list", component: EmployeeListComponent },
   { path: "get-employee/:id", component: AddEmployeeComponent },
   { path: "get-employee-details/:id", component: EmployeeDetailsComponent },
