@@ -1,13 +1,22 @@
 <div style="overflow: auto;">
     <div class="flex-row" style="max-width: 800px; margin: auto;">
       <mat-form-field>
-          <mat-label>chart type</mat-label>
-          <mat-select [(ngModel)]="chartId" name="chartId" (selectionChange)="chartTypeChanged($event.value)">
+          <mat-label>Report type</mat-label>
+          <mat-select [(ngModel)]="chartId" name="chartId" (selectionChange)="reportTypeChanged($event.value)">
               <mat-option *ngFor="let item of chartList" [value]="item.id">
                   {{item.name}}
               </mat-option>
           </mat-select>
       </mat-form-field>
+      <mat-form-field>
+      <mat-label>chart type</mat-label>
+      <mat-select (selectionChange)="chartTypeChanged($event.value)">
+          <mat-option *ngFor="let item of chartTypeList" [value]="item.id">
+              {{item.name}}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+
     </div>
   
     <div *ngIf="loading" class="flex-row">

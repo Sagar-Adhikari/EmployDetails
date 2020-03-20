@@ -12,9 +12,16 @@ export class ReportComponent implements OnInit {
   chartList = [
     { id: 1, name: 'Name Vs Salary Chart' },
     { id: 2, name: 'Name Vs Age Chart' },
-   
-  ];
 
+  ];
+  chartTypeList = [
+    { id: 1, name: 'Bar Chart' },
+    { id: 2, name: 'Line Chart' },
+    { id: 3, name: 'Pie Chart' },
+    { id: 4, name: 'Doughnut Chart' },
+    { id: 5, name: 'Polar Area Chart' },
+ 
+  ];
 
   chartId: number = 1;
   flag: number = 1;
@@ -45,30 +52,30 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reportTypeChanged(this.flag)
     this.reportService.getEmployeeList().subscribe((x: any) => {
       console.log('employee details', x);
     })
   }
 
-  chartTypeChanged(flag) {
+  reportTypeChanged(flag) {
     this.globalService.setLoading(true);
     this.flag = flag;
     this.loading = true;
     this.barChartData = [{ data: [], label: 'Chart Type' }];
     const data = [];
     const label = [];
-    console.log('flag',flag);
+    console.log('flag', flag);
     if (flag === 1) {
       this.reportService.getEmployeeList().subscribe((x: any) => {
-       
+
         data.push({ data: x.data.employee_salary, label: x.data.employee_name });
         const categoryData = [];
         for (let i = 0; i < x.data.length; i++) {
           label.push(x.data[i].employee_name);
           categoryData.push(x.data[i].employee_salary);
         }
-        // console.log('Category ', x);
-        // console.log(this.barChartData,'Barchart')
+   
         this.barChartData = [
           { data: categoryData, label: 'Name vs Salary' },
         ];
@@ -79,24 +86,36 @@ export class ReportComponent implements OnInit {
     }
     else if (flag === 2) {
       this.reportService.getEmployeeList().subscribe((x: any) => {
-       
+ 
         data.push({ data: x.data.employee_age, label: x.data.employee_name });
         const categoryData = [];
         for (let i = 0; i < x.data.length; i++) {
           label.push(x.data[i].employee_name);
           categoryData.push(x.data[i].employee_age);
         }
-        // console.log('Category ', x);
-        // console.log(this.barChartData,'Barchart')
+        
         this.barChartData = [
-          { data: categoryData, label: 'name vs age' },
+          { data: categoryData, label: 'Name vs Age' },
         ];
         this.barChartLabels = label;
         this.loading = false;
         this.globalService.setLoading(false);
       });
     }
+  }
 
+  chartTypeChanged(chartTypeFlag) {
+    if(chartTypeFlag===1){
+      this.barChartType='bar';
+    }else if(chartTypeFlag===2){
+      this.barChartType='line'
+    }else if(chartTypeFlag===3){
+      this.barChartType='pie'
+    }else if(chartTypeFlag===4){
+      this.barChartType='doughnut'
+    }else if(chartTypeFlag===5){
+      this.barChartType='polarArea'
+    }
 
   }
 
