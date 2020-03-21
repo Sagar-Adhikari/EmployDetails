@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from 'src/environments/environment.prod';
+import { IEmployee } from '../interfaces';
 
 @Component({
   selector: "app-add-employee",
@@ -12,13 +13,13 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AddEmployeeComponent implements OnInit {
   @ViewChild("employeeName", { static: true }) employeeName: ElementRef;
-  private iconPath = environment.icon_image_path + 'photo/p/';
+  private iconPath = environment.icon_image_path + 'fakepath/';
 
   employeeForm: FormGroup;
   private employeeId: number;
   selectedFile = null;
 
-  loading=false;
+  loading = false;
 
   imgUrl: any = this.iconPath + 'default.jpg';
 
@@ -39,16 +40,16 @@ export class AddEmployeeComponent implements OnInit {
     //   console.log('edit by id',x);
     // })
     this.employeeForm = new FormBuilder().group({
-      name: ['', Validators.compose([Validators.required])],
-      salary: [0, Validators.compose([Validators.required])],
-      age: [0, Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])],
-      file:[]
+      name: ['',  Validators.compose([Validators.maxLength(50), Validators.minLength(1), Validators.required])],
+      salary: ['0', Validators.compose([Validators.required])],
+      age: ['0', Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])],
+      file: []
 
     });
     this.activatedRoute.params.subscribe(params => {
       // debugger;
       this.employeeId = params.id;
-      if (this.employeeId != 0 && this.employeeId != undefined) {
+      if (this.employeeId != null && this.employeeId != undefined) {
         this.globalService.setLayout({ allowFooter: true, pageTitle: 'Edit Employee' });
         this.employService.getEmployee(this.employeeId.toString()).subscribe((x: any) => {
 
@@ -84,6 +85,7 @@ export class AddEmployeeComponent implements OnInit {
     console.log("empValue", value);
     if (valid) {
       if (!this.employeeId) {
+        
         this.employService.addEmployee(value.name, value.salary, value.age).subscribe(x => {
           console.log('emp', x);
           if (x.status === 'success') {

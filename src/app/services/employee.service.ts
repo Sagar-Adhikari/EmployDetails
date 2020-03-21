@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class EmployeeService {
   constructor(private http: HttpClient) { }
 
-  addEmployee(name: string, salary: number, age: number): Observable<any> {
+  addEmployee(name: string, salary: string, age: string): Observable<any> {
     const header = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = environment.api + 'create';
     return this.http.post(url, { name, salary, age }, { headers: header })
@@ -62,6 +62,7 @@ export class EmployeeService {
   }
 
   public deleteEmployee(id: string): Observable<any> {
+    // debugger;
     const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `delete/${id}`;
     // const params = new HttpParams()
@@ -73,6 +74,8 @@ export class EmployeeService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    
+    console.log('service handle error: ',error);
     if (error.error) {
       return throwError({ status: error.status, message: error.error.message });
     } else {

@@ -21,29 +21,37 @@ export class EmployeeDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.globalService.setLayout({ pageTitle:'Employee Details', allowFooter: false
-    
-    });
+    this.globalService.setLayout({ allowFooter: false, pageTitle: "Employees Details" });
     this.globalService.setLoading(false);
   }
 
   ngOnInit() {
     this.employeeId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.getEmployee();
+
+  }
+  getEmployee() {
+    debugger;
     this.loading = true;
     if (this.employeeId != null && this.employeeId != undefined) {
-      this.employeeService.getEmployee(this.employeeId.toString()).subscribe(x => {
+      this.employeeService.getEmployee(this.employeeId).subscribe(x => {
+        this.employData = x.data;
         console.log("details", x);
 
       });
     }
-
   }
 
   deleteEmployee() {
-    this.loading=true;
+
+    this.loading = true;
     this.employeeService.deleteEmployee(this.employeeId.toString()).subscribe((x: any) => {
       console.log("delete", x);
-      this.employData = x.data;
+      if (x.status === 'success') {
+        this.router.navigate(['/employee-list']);
+      } else {
+        this.globalService.showMessageError(x.message);
+      }
     });
   }
 }

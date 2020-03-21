@@ -37,10 +37,7 @@ export class EmployeeListComponent implements OnInit {
     private globalService: GlobalService,
     private router: Router
   ) {
-    this.globalService.setLayout({
-      allowFooter: false,
-      pageTitle: "Employees List"
-    });
+    this.globalService.setLayout({allowFooter: false, pageTitle: "Employees List"});
   }
 
   ngOnInit() {

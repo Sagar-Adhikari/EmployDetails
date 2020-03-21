@@ -6,7 +6,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { ReportComponent } from './components/report/report.component';
 
 const routes: Routes = [
-  { path: '', component: EmployeeListComponent },
+  // { path: '', component: EmployeeListComponent },
+  { path: '', redirectTo: 'employee-list', pathMatch: 'full'},
 
   { path: "add-employ", component: AddEmployeeComponent },
   { path: "employee-list", component: EmployeeListComponent },
