@@ -18,8 +18,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ReportComponent } from './components/report/report.component';
 import { ChartsModule } from 'ng2-charts';
-import { LoginComponent } from './modules/auth/login/login.component';
-import { RegisterUserComponent } from './modules/auth/register-user/register-user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +26,8 @@ import { RegisterUserComponent } from './modules/auth/register-user/register-use
     EmployeeDetailsComponent,
     AddEmployeeComponent,
     ReportComponent,
-    LoginComponent,
-    RegisterUserComponent
+    // LoginComponent,
+    // RegisterUserComponent
   ],
   imports: [
     BrowserModule,
