@@ -6,24 +6,24 @@ margin:auto; border: solid 1px #e8e7ef; margin-top:10px">
   <span class="title">Employee Image</span>
   <!-- <img class="logo" [src]="'../assets/employeeDetails.png'" alt="logo"/> -->
   <span class="logo"[ngStyle]="{'background-image':'url('+image[0]+')'}"></span>
-  
+
 
 </div>
 
 
 <div   class="flex-row">
    <span class="title">Employee Name:</span>
-   <span class="value"> {{employData.employee_name}} </span>
+   <span class="value"> {{employData?.employee_name}} </span>
 </div>
 
 <div   class="flex-row">
    <span class="title"> Salary:</span>
-   <span class="value"> {{employData.employee_salary}} </span>
+   <span class="value"> {{employData?.employee_salary}} </span>
 </div>
 
 <div   class="flex-row">
    <span class="title">Age:</span>
-   <span class="value"> {{employData.employee_age}} </span>
+   <span class="value"> {{employData?.employee_age}} </span>
 </div>
 
 

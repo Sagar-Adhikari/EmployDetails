@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit {
     { id: 3, name: 'Pie Chart' },
     { id: 4, name: 'Doughnut Chart' },
     { id: 5, name: 'Polar Area Chart' },
- 
+
   ];
 
   chartId: number = 1;
@@ -54,7 +54,10 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.reportTypeChanged(this.flag)
     this.reportService.getEmployeeList().subscribe((x: any) => {
+      if(x.status === 'success'){
       console.log('employee details', x);
+
+      }
     })
   }
 
@@ -75,46 +78,42 @@ export class ReportComponent implements OnInit {
           label.push(x.data[i].employee_name);
           categoryData.push(x.data[i].employee_salary);
         }
-   
         this.barChartData = [
           { data: categoryData, label: 'Name vs Salary' },
         ];
         this.barChartLabels = label;
         this.loading = false;
-        this.globalService.setLoading(false);
       });
     }
     else if (flag === 2) {
       this.reportService.getEmployeeList().subscribe((x: any) => {
- 
         data.push({ data: x.data.employee_age, label: x.data.employee_name });
         const categoryData = [];
         for (let i = 0; i < x.data.length; i++) {
           label.push(x.data[i].employee_name);
           categoryData.push(x.data[i].employee_age);
         }
-        
+
         this.barChartData = [
           { data: categoryData, label: 'Name vs Age' },
         ];
         this.barChartLabels = label;
         this.loading = false;
-        this.globalService.setLoading(false);
       });
     }
   }
 
   chartTypeChanged(chartTypeFlag) {
-    if(chartTypeFlag===1){
-      this.barChartType='bar';
-    }else if(chartTypeFlag===2){
-      this.barChartType='line'
-    }else if(chartTypeFlag===3){
-      this.barChartType='pie'
-    }else if(chartTypeFlag===4){
-      this.barChartType='doughnut'
-    }else if(chartTypeFlag===5){
-      this.barChartType='polarArea'
+    if(chartTypeFlag === 1){
+      this.barChartType ='bar';
+    }else if(chartTypeFlag === 2){
+      this.barChartType ='line'
+    }else if(chartTypeFlag === 3){
+      this.barChartType ='pie'
+    }else if(chartTypeFlag === 4){
+      this.barChartType = 'doughnut'
+    }else if(chartTypeFlag === 5){
+      this.barChartType = 'polarArea'
     }
 
   }

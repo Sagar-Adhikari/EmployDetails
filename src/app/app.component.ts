@@ -37,6 +37,10 @@ export class AppComponent {
       this.loading = x;
     })
 
-  
+
+  }
+
+  onNavbarClicked(){
+    this.isOpenSideNavBar = false;
   }
 }

@@ -2,31 +2,29 @@
 <form class="employee-form" novalidate [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)">
   <div class="flex-row">
     <mat-form-field class="mat-form-field">
-      <input #employeeName matInput placeholder="Name" autocomplete="off" formControlName="name"   />
+      <input #employeeName matInput placeholder="Name" autocomplete="off" formControlName="name"/>
       <mat-error>Name is not in correct format.</mat-error>
       <mat-hint>Enter the Employee Name </mat-hint>
     </mat-form-field>
   </div>
   <div class="flex-row">
       <mat-form-field class="mat-form-field">
-        <input #categoryName matInput placeholder="Salary" autocomplete="off" formControlName="salary"   />
+        <input #categoryName matInput placeholder="Salary" autocomplete="off" formControlName="salary"/>
         <mat-error>salary is not in correct format.</mat-error>
         <mat-hint>Enter the Employee salary </mat-hint>
       </mat-form-field>
     </div>
     <div class="flex-row">
       <mat-form-field class="mat-form-field">
-        <input #categoryName matInput placeholder="age" autocomplete="off" formControlName="age"   />
+        <input #categoryName matInput placeholder="age" autocomplete="off" formControlName="age"/>
         <mat-error>Age is not in correct format.</mat-error>
         <mat-hint>Enter the Employee Age </mat-hint>
       </mat-form-field>
     </div>
     <div class="flex-row item">
-        
-      <input #fileInput type="file" name="file" 
+      <input #fileInput type="file" name="file"
       formControlName="file" accept="image/*"
           (change)="onFileSelected($event)">
-         
   </div>
   <div *ngIf="selectedFile" class="img-container">
       <div

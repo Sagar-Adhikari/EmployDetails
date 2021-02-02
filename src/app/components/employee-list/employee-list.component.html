@@ -1,6 +1,6 @@
 
 <div class="page-title">
-<div style="margin-top: 5px;">
+<div style="padding: 10px;">
   <button mat-raised-button color="primary" (click)="addNew()">Add New</button>
 </div>
 
@@ -61,7 +61,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef >Action</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button routerLink="/get-employee/{{ row.id }}">
+        <button mat-icon-button routerLink="/add-employee/{{ row.id }}" (click)="onEditEmployee(row.id)">
           <mat-icon color="primary">edit</mat-icon>
         </button>
       </td>

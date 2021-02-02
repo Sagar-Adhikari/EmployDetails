@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { HttpHeaders, HttpParams, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
-import { catchError } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Observable, throwError } from "rxjs";
+import { HttpClient, HttpErrorResponse, HttpHeaders, } from "@angular/common/http";
+import { environment } from "src/environments/environment.prod";
+import { catchError } from "rxjs/operators";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EmployeeService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addEmployee(name: string, salary: string, age: string): Observable<any> {
     const header = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -17,40 +17,14 @@ export class EmployeeService {
         catchError(this.handleError))
 
   }
-  // public getEmployee(id:number): Observable<any> {
-  //   debugger;
-  //   const header = new HttpHeaders({ 'ContentType': 'application/json' });
-  //   const url = environment.api + `employee/${id}`;
-  //   // const params = new HttpParams()
-  //   // .set('id', id.toString());
-  //   return this.http.get(url, { headers: header })
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
-
-
-
-
-
   public getEmployee(id: string): Observable<any> {
-    // debugger;
-    const header = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `employee/${id}`;
-    // const params = new HttpParams()
-    // .set('id', id.toString());
-    return this.http.get(url ,{headers:header})
-      .pipe(catchError(this.handleError));
+    return this.http.get(url).pipe(catchError(this.handleError));
   }
 
-
   public getEmployeeList(): Observable<any> {
-    const header = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `employees`;
-    return this.http.get(url, { headers: header })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.get(url, {}).pipe(catchError(this.handleError));
   }
   public editEmployee(id: string, name: string, salary: number, age: number): Observable<any> {
     const header = new HttpHeaders({ 'ContentType': 'application/json' });
@@ -62,27 +36,22 @@ export class EmployeeService {
   }
 
   public deleteEmployee(id: string): Observable<any> {
-    // debugger;
-    const headers = new HttpHeaders({ 'ContentType': 'application/json' });
     const url = environment.api + `delete/${id}`;
-    // const params = new HttpParams()
-    // .set('id', id.toString());
-    return this.http.delete(url,{ headers  })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http
+      .delete(url)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
-    
-    console.log('service handle error: ',error);
+    console.log("service handle error: ", error);
     if (error.error) {
       return throwError({ status: error.status, message: error.error.message });
     } else {
       return throwError({
-        status: 500, success: false,
-        message: `Backend returned code ${error.status} body was: ${error.message}`
-      })
+        status: 500,
+        success: false,
+        message: `Backend returned code ${error.status} body was: ${error.message}`,
+      });
     }
   }
 }

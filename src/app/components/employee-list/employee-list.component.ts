@@ -2,7 +2,7 @@ import { GlobalService } from "./../../global.service";
 import { EmployeeService } from "./../../services/employee.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
-import { MatSort } from '@angular/material';
+import { MatSort, MatSnackBar } from '@angular/material';
 import { merge } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -12,15 +12,19 @@ import { tap } from 'rxjs/operators';
   styleUrls: ["./employee-list.component.scss"]
 })
 export class EmployeeListComponent implements OnInit {
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
   loading = false;
 
   private sortField: string;
+
   sortDirection: string;
 
   private tempData: any;
 
   data: any[] = [];
+
   displayedColumns: string[] = [
     "id",
     "employee_name",
@@ -35,7 +39,8 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private globalService: GlobalService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.globalService.setLayout({allowFooter: false, pageTitle: "Employees List"});
   }
@@ -49,17 +54,27 @@ export class EmployeeListComponent implements OnInit {
     this.globalService.setLoading(true);
     this.employeeService.getEmployeeList().subscribe(x => {
       console.log("employees", x);
-      // if (x.status==='success') {
+      if (x.status==='success') {
       this.data = x.data;
       this.tempData = [...this.data];
       this.globalService.setLoading(false);
-      // }
+      this.globalService.showMessageSuccess(x.message);
+      }else{
+      this.globalService.showMessageError('Unable To fetch Data,Server Error!');
+        this.globalService.setLoading(false);
+      }
+    },(error)=>{
+      this.snackBar.open(error);
+      console.log('error handling:',error);
+      this.globalService.showMessageError(error.message);
+      this.globalService.setLoading(false);
     });
   }
 
   addNew() {
     this.router.navigate(["/add-employ"]);
   }
+
   ngAfterViewInit() {
     this.sort.sortChange.subscribe((x: { active: any; direction: string; }) => {
       this.sortField = x.active;
@@ -71,22 +86,27 @@ export class EmployeeListComponent implements OnInit {
   }
 
 
+  onEditEmployee(id){
+    // this.router.navigate('/employee-list',id)
+
+  }
+
+
   sortData() {
-    this.data = [...this.tempData];
+    debugger;
+    // this.data = [...this.tempData];
     if (this.sortField === 'id') {
       if (this.sortDirection === 'ASC') {
-        this.data.sort(function (a: any, b: any) { return a.total - b.total });
+        this.data.sort(function (a: any, b: any) { return a.id - b.id });
       } else if (this.sortDirection === 'DESC') {
-        this.data.sort(function (a: any, b: any) { return b.total - a.total });
+        this.data.sort(function (a: any, b: any) { return b.id - a.id });
       }
     }
     if (this.sortField === 'employee_name') {
       if (this.sortDirection === 'ASC') {
         this.data.sort(function (a: any, b: any) {
-
           var nameA = a.serviceProviderName.toUpperCase();
           var nameB = b.serviceProviderName.toUpperCase();
-
           if (nameA < nameB) {
             return -1;
 
@@ -129,7 +149,7 @@ export class EmployeeListComponent implements OnInit {
         this.data.sort(function (a: any, b: any) { return b.pending - a.pending });
       }
     }
-     
+
 
   }
 

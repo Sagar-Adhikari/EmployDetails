@@ -13,10 +13,13 @@ import { IEmployee } from '../interfaces';
 })
 export class AddEmployeeComponent implements OnInit {
   @ViewChild("employeeName", { static: true }) employeeName: ElementRef;
+
   private iconPath = environment.icon_image_path + 'fakepath/';
 
   employeeForm: FormGroup;
+
   private employeeId: number;
+
   selectedFile = null;
 
   loading = false;
@@ -35,14 +38,10 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // debugger;
-    // this.employService.getEmployee('4').subscribe(x=>{
-    //   console.log('edit by id',x);
-    // })
     this.employeeForm = new FormBuilder().group({
       name: ['',  Validators.compose([Validators.maxLength(50), Validators.minLength(1), Validators.required])],
-      salary: ['0', Validators.compose([Validators.required])],
-      age: ['0', Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])],
+      salary: ['', Validators.compose([Validators.required])],
+      age: ['', Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(1)])],
       file: []
 
     });
@@ -52,7 +51,6 @@ export class AddEmployeeComponent implements OnInit {
       if (this.employeeId != null && this.employeeId != undefined) {
         this.globalService.setLayout({ allowFooter: true, pageTitle: 'Edit Employee' });
         this.employService.getEmployee(this.employeeId.toString()).subscribe((x: any) => {
-
           console.log('edit emp:', x);
           this.employeeForm.controls['name'].setValue(x.data.employee_name);
           this.employeeForm.controls['salary'].setValue(x.data.employee_salary);
@@ -83,33 +81,42 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit({ value, valid }: { value: any; valid: boolean }) {
     console.log("empValue", value);
+    const empId = this.activatedRoute.snapshot.paramMap.get('id');
     if (valid) {
-      if (!this.employeeId) {
-        
-        this.employService.addEmployee(value.name, value.salary, value.age).subscribe(x => {
+      if (!empId) {
+        // var body = {
+        //   name: value.name,
+        //   age: value.age,
+        //   salary: value.salary
+        // }
+        this.employService.addEmployee(value.name,value.age,value.salary).subscribe((x : any) => {
           console.log('emp', x);
           if (x.status === 'success') {
+            this.loading = false;
             this.globalService.showMessageSuccess("Employee added successfully.");
             this.router.navigate(["/employee-list"]);
           } else {
+            this.loading = false;
             this.globalService.showMessageError(x.message);
           }
         });
       } else {
         this.employService.editEmployee(this.employeeId.toString(), value.name, value.salary, value.age).subscribe((x: any) => {
           if (x.success) {
+            this.loading = false;
             this.globalService.showMessageSuccess("Employee edited successfully.");
           } else {
+            this.loading = false;
             this.globalService.showMessageError(x.message);
           }
           this.router.navigate(["/employee-list"]);
         },
-          err => {
-            this.globalService.showMessageError(err.message);
+          error => {
+            this.globalService.showMessageError(error.message);
           });
       }
     } else {
-      this.globalService.showMessageError("Input(s) are not valid.");
+      this.globalService.showMessageError("Input(s) are not valid!");
     }
   }
 }

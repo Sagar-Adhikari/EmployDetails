@@ -26,12 +26,12 @@
   </div>
 </mat-toolbar>
 <mat-sidenav-container fullScreen class="sidenav-container">
-  <mat-sidenav  #drawer class="sidenav" fixedInViewPort="true"
-     [opened]="isOpenSideNavBar">
+  <mat-sidenav #drawer class="sidenav" fixedInViewPort="true"
+     [opened]="isOpenSideNavBar" (click)="onNavbarClicked()">
     <mat-nav-list>
-      <a   mat-list-item routerLink="/employee-list">Employee Lists </a>
+      <a mat-list-item routerLink="/employee-list">Employee Lists </a>
       <mat-divider ></mat-divider>
-      <a    mat-list-item routerLink="/chart-report">Employee Reports</a>
+      <a mat-list-item routerLink="/chart-report">Employee Reports</a>
     </mat-nav-list>
     <mat-divider ></mat-divider>
     <mat-nav-list>
